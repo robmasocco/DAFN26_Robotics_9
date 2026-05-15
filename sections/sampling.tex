@@ -1,6 +1,6 @@
 % Section 1 - Sensor sampling
 % Roberto Masocco <roberto.masocco@uniroma2.it>
-% May 28, 2024
+% May 21, 2026
 
 % ### Sensor sampling ###
 \section{Sensor sampling}
@@ -10,6 +10,7 @@
 \begin{frame}{Sensor sampling basics}{From theory to practice}
 	\begin{columns}
 		\column{.5\textwidth}
+    \justifying
 		\textbg{Sampling} a sensor consists of reading \textbg{measurements} from it, to be fed to a control loop or some other subsystem.\\
     It requires:
 		\begin{itemize}
@@ -30,8 +31,9 @@
 
 % --- Sensor sampling with ROS 2 ---
 \begin{frame}{Sensor sampling with ROS 2}{Driver modules}
-	Sampling is generally handled by \textbg{microcontrollers}, but when the sampling frequency is not too high, \emph{e.g.}, down to some ms, it can be carried out by a higher-level device.\\
-	To implement a ROS 2 sensor sampling module, one has to develop a \textbg{driver node}, \emph{i.e.}, an application that:
+  \justifying
+	Sampling is generally handled by \textbg{microcontrollers}, but when the sampling frequency is \emph{not too high}, \emph{e.g.}, periods down to some $\mathrm{ms}$, it may be carried out by a higher-level device.\\
+	To implement a ROS 2 sensor sampling module, one has to develop a \textbg{driver node}, \emph{i.e.}, an application that
 	\begin{itemize}
 		\item configures the \textbg{sensor hardware} to run as required;
 		\item ensures \textbg{stable sampling frequency} and \textbg{low jitter};
@@ -46,7 +48,8 @@
 
 % --- Anatomy of a driver node ---
 \begin{frame}{Anatomy of a driver node}{Guidelines and best practices}
-  In essence, a \textbg{driver node} always consists of:
+  \justifying
+  In essence, a \textbg{driver node} always consists of
   \begin{itemize}
     \item an \textbg{enable service}, to be called to start or stop the sampling;
     \item a \textbg{hardware configuration} routine, to be run at startup or when enabled;

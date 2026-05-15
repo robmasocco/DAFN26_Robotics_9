@@ -1,6 +1,6 @@
 % Section 2 - Image processing
 % Roberto Masocco <roberto.masocco@uniroma2.it>
-% May 28, 2024
+% May 21, 2026
 
 % ### Image processing ###
 \section{Image processing}
@@ -10,7 +10,8 @@
 \begin{frame}{Vision in robotics}{Sensors characteristics}
 	\begin{columns}
 		\column{.5\textwidth}
-		\textbg{Visual sensors}, commonly referred to as \textbg{cameras}, are sensors that provide \textbg{images} as output, encoded in \textbg{frames}, \emph{i.e.}, \textbg{matrices} of data points. They are usually made of:
+    \justifying
+		\textbg{Visual sensors}, commonly referred to as \textbg{cameras}, are sensors that provide \textbg{images} as output, encoded in \textbg{frames}, \emph{i.e.}, \textbg{matrices} of data points. They are usually made of
 		\begin{itemize}
 			\item one or more \textbg{optical lenses}, to focus light on the sensor;
 			\item a \textbg{sensor}, to convert light into electrical signals;
@@ -46,7 +47,8 @@
 \begin{frame}{Vision in robotics}{Sensors characteristics}
 	\begin{columns}
 		\column{.5\textwidth}
-		\textbg{Cameras} are usually characterized by:
+    \justifying
+		\textbg{Cameras} are usually characterized by
 		\begin{itemize}
 			\item \textbg{resolution}, \emph{i.e.}, the number of pixels in the image;
 			\item \textbg{field of view}, \emph{i.e.}, the angular extension of the scene (horizontal and vertical);
@@ -81,15 +83,17 @@
 	\end{columns}
 \end{frame}
 \begin{frame}{Vision in robotics}{Main use cases}
-	Visual sensors are usually employed in robotics for:
+  \justifying
+	Visual sensors are usually employed in robotics for
 	\begin{itemize}
 		\item \textbg{object detection}, \emph{i.e.}, identifying objects in the scene;
 		\item \textbg{object tracking}, \emph{i.e.}, following objects in the scene;
 		\item \textbg{localization}, \emph{i.e.}, estimating the robot's position in the environment;
 		\item \textbg{mapping}, \emph{i.e.}, building a model of the environment.
 	\end{itemize}
-	\vspace{.5cm}
+	\bigskip
 	Using the sensor is not enough: \textbg{algorithms} are needed to perform these tasks.\\
+  \smallskip
 	Such algorithms usually run in separate modules.
 \end{frame}
 
@@ -123,6 +127,7 @@
 \begin{frame}{Lens distorsion}{Camera calibration and rectification}
 	\begin{columns}
 		\column{.5\textwidth}
+    \justifying
 		\textbg{Pinhole cameras} generally introduce \textbg{radial distorsion} in the images they produce, \emph{i.e.}, \textbg{straight lines appear curved}. This is due to how the light enters the camera through the lens.\\
 		\bigskip
 		A \textbg{camera calibration} procedure is needed to estimate the parameters of the \textbg{distorsion model}, so that a \textbg{rectification map} can then be applied to each frame.
@@ -139,6 +144,7 @@
 \begin{frame}{Lens distorsion}{Camera calibration and rectification}
 	\begin{columns}
 		\column{.5\textwidth}
+    \justifying
 		The calibration procedure usually involves moving a \textbg{checkerboard} of known dimensions in front of the camera, and taking several pictures of it from different angles.\\
 		\bigskip
 		An \textbg{estimation model} can then be used to estimate the parameters of the distorsion model, which can then be used to build the rectification map.
@@ -155,10 +161,11 @@
 \begin{frame}{Lens distorsion}{Camera calibration and rectification}
 	\begin{columns}
 		\column{.5\textwidth}
+    \justifying
 		The \textbg{rectification map} is a \textbg{lookup table} that associates each pixel in the original frame with a pixel in the rectified frame, \textbg{interpolating} when necessary.\\
 		\bigskip
 		It is usually stored in \textbg{configuration files}, and must be applied to each frame before it can be used by other algorithms.
-		\vspace{.45cm}
+		\medskip
 		\begin{block}{}
 			\centering
 			\textbf{ROS 2 offers the \href{https://navigation.ros.org/tutorials/docs/camera_calibration.html}{\color{blue}\underline{\texttt{cameracalibrator}}} tool in the \texttt{camera\_calibration} package to perform camera calibration.}
@@ -186,11 +193,12 @@
 \begin{frame}{Event cameras}{A new frontier in computer vision for robotics}
 	\begin{columns}
 		\column{.5\textwidth}
+    \justifying
 		\only<1>{
 			\nolistindent Also called \textbg{neuromorphic cameras}, they are a new type of visual sensor that provides \textbg{events} instead of \textbg{frames}, and are \textbg{complementary} to traditional cameras.
 		}
 		\only<2>{
-			\hspace{-8pt}They are characterized by:
+			\hspace{-8pt}They are characterized by
 			\begin{itemize}
 				\item \textbg{no motion blur};
 				\item \textbg{high dynamic range};
@@ -199,7 +207,7 @@
 			\end{itemize}
 		}
     \only<3>{
-      \hspace{-12pt}They are very recent (circa 2008), and are still in the \textbg{research phase}. They are being evaluated in \textbg{high-speed} and \textbg{high-dynamic range} applications, such as:
+      \hspace{-12pt}They are very recent (circa 2008), and are still in the \textbg{research phase}. They are being evaluated in \textbg{high-speed} and \textbg{high-dynamic range} applications, such as
       \begin{itemize}
         \item \textbg{autonomous driving};
         \item \textbg{localization and mapping};

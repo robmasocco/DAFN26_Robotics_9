@@ -1,6 +1,6 @@
 % Section 4 - Examples: a target detection pipeline
 % Roberto Masocco <roberto.masocco@uniroma2.it>
-% % May 28, 2024
+% May 21, 2026
 
 % ### Examples: a target detection pipeline ###
 \section{Examples: a target detection pipeline}
@@ -8,14 +8,17 @@
 
 % --- ArUco detection pipeline ---
 \begin{frame}{ArUco detection pipeline}{A real example from LDC22}
+  \justifying
   Examples for this lecture are in the \href{https://github.com/IntelligentSystemsLabUTV/ros2-examples/tree/humble/src/cpp/image_processing}{\color{blue}\underline{\texttt{cpp/image\_processing}}} directory.\\
+  \medskip
   There are \textbg{three nodes}:
   \begin{enumerate}
-    \item \texttt{ros2\_usb\_camera}: acquires images from a USB camera;
-    \item \texttt{aruco\_detector}: detects ArUco markers in a video stream;
-    \item \texttt{rqt\_image\_view}: forked version of the official ROS 2 video stream visualizer.
+    \item \texttt{ros2\_usb\_camera}: \textbg{acquires images} from a USB camera;
+    \item \texttt{aruco\_detector}: \textbg{detects ArUco fiducial markers} in a video stream;
+    \item \texttt{rqt\_image\_view}: forked version of the official ROS 2 \textbg{video stream visualizer}.
   \end{enumerate}
-  These three nodes form a \textbg{pipeline} to detect \textbg{ArUco markers} in a video stream, and show them in a \textbg{GUI}. They are \textbg{completely configurable}, and \textbg{optimized} to run on \textbg{GPU} and similar hardware. They make use of \textbg{all the features we have seen so far} including composition, benefitting of \textbg{zero-copy} data transfer and shared address space.
+  These three nodes form a \textbg{pipeline} to \textbg{detect ArUco markers} in a video stream, and show them in a \textbg{GUI}. They are \textbg{completely configurable}, and \textbg{optimized} to run on \textbg{GPU} and similar hardware. They make use of \textbg{all the features we have seen so far} including composition, benefitting of \textbg{zero-copy} data transfer and shared address space.
+  \medskip
   \begin{block}{}
     \centering
     \textbf{Multiple instances of these nodes were active during the Leonardo Drone Contest 2022!}
