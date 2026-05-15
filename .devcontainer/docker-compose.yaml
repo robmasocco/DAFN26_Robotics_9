@@ -1,0 +1,47 @@
+# LaTeX environment containers specification.
+#
+# Alessandro Tenaglia <alessandro.tenaglia@uniroma2.it>
+# Roberto Masocco <roberto.masocco@uniroma2.it>
+#
+# April 21, 2026
+
+services:
+  latex-env:
+    image: intelligentsystemslabutv/latex-env:latest
+    environment:
+      TERM: xterm-256color
+      DISPLAY:
+      SHELL: /usr/bin/zsh
+    user: latex
+    init: true
+    stdin_open: false
+    tty: true
+    working_dir: /home/latex/workspace
+    command: ["/bin/bash", "-c", "trap 'exit 0' TERM; sleep infinity & wait"]
+    volumes:
+      - ~/.Xauthority:/home/latex/.Xauthority:rw
+      - ~/.ssh:/home/latex/.ssh
+      - ~/.gitconfig:/home/latex/.gitconfig
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../:/home/latex/workspace
+
+  latex-dev:
+    image: intelligentsystemslabutv/latex-env:dev
+    environment:
+      TERM: xterm-256color
+      DISPLAY:
+      SHELL: /usr/bin/zsh
+    user: latex
+    init: true
+    stdin_open: false
+    tty: true
+    working_dir: /home/latex/workspace
+    command: ["/bin/bash", "-c", "trap 'exit 0' TERM; sleep infinity & wait"]
+    volumes:
+      - ~/.Xauthority:/home/latex/.Xauthority:rw
+      - ~/.ssh:/home/latex/.ssh
+      - ~/.gitconfig:/home/latex/.gitconfig
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ../:/home/latex/workspace
