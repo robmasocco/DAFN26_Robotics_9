@@ -47,7 +47,7 @@
 	\begin{itemize}
 		\item \texttt{sensor\_msgs/Image}: the standard ROS \textbg{message type} to transmit \textbg{images} over the DDS layer;
 		\item \texttt{sensor\_msgs/CameraInfo}: the standard ROS \textbg{message type} to transmit and parse \textbg{camera calibration parameters};
-		\item \href{https://wiki.ros.org/image_transport}{\color{blue}\underline{\texttt{image\_transport}}}: a ROS package to \textbg{transmit images} over the DDS layer;
+		\item \href{https://wiki.ros.org/image_transport}{\color{blue}\underline{\texttt{image\_transport}}}: a ROS package to \textbg{transmit images and metadata} over the RMW layer efficiently;
 		\item \href{https://wiki.ros.org/camera_info_manager}{\color{blue}\underline{\texttt{camera\_info\_manager}}}: a library to parse, use, and store \textbg{camera calibration parameters} from configuration files and messages inside ROS nodes.
 	\end{itemize}
 \end{frame}
@@ -69,6 +69,27 @@ uint8[] data
 \end{lstlisting}
 	\end{columns}
 \end{frame}
+\begin{frame}[fragile]{ROS tools for image processing}{The CameraInfo message}
+	\begin{columns}
+		\column{.9\textwidth}
+		\begin{lstlisting}[language=ros2msg, caption=Definition of the \texttt{sensor\_msgs/msg/CameraInfo} message; go have a look at it.]
+std_msgs/Header header
+
+uint32 height
+uint32 width
+
+string distortion_model
+float64[]   d # Distortion coefficients
+float64[9]  k # Intrinsic raw camera matrix
+float64[9]  r # Rectification matrix (rotated stereo cameras)
+float64[12] p # Projection camera matrix
+
+uint32 binning_x
+uint32 binning_y
+RegionOfInterest roi
+\end{lstlisting}
+	\end{columns}
+\end{frame}
 \begin{frame}{ROS tools for image processing}{Sending images over the DDS}
   \justifying
 	Using images and video streams in general over the DDS layer is \textbg{not trivial}, since
@@ -76,7 +97,7 @@ uint8[] data
 		\item we would like some kind of \textbg{specialized transport strategy} to optimize throughput and latency;
 		\item the DDS specification is \textbg{not optimized} to transmit \textbg{large} and \textbg{variable-size} data chunks over potentially \textbg{lossy} networks, \emph{e.g.}, WiFi.
 	\end{enumerate}
-	\texttt{image\_transport} is a ROS 2 library that provides \textbg{wrappers} for \textbg{topic publishers} and \textbg{subscribers}, allowing to transmit images using different \textbg{transports}:
+	\texttt{image\_transport} is a ROS 2 library that provides \textbg{wrappers} for \texttt{Image+CameraInfo} \textbg{topic publishers} and \textbg{subscribers}, allowing to transmit images using different \textbg{transports}:
 	\begin{itemize}
 		\item \texttt{raw}: the default transport, which uses the \texttt{sensor\_msgs/Image} message;
 		\item \texttt{compressed}: uses the \texttt{sensor\_msgs/CompressedImage} message, automatically converting frames to \texttt{JPEG} or \texttt{PNG} format;
